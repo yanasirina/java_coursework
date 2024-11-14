@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: KidsShop
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/dbforshop
+    username: yana
+    password: yana
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/dbforshop
+    user: yana
+    password: yana
+    schemas: public
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.hibernate.format_sql: true
+
+server:
+  port: 7070
