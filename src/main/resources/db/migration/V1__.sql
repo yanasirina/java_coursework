@@ -108,3 +108,17 @@ ALTER TABLE users_roles
 
 ALTER TABLE users_roles
     ADD CONSTRAINT fk_userol_on_user FOREIGN KEY (user_id) REFERENCES users (id);
+
+INSERT INTO role (id, name) VALUES (1, 'ROLE_ADMIN');
+INSERT INTO role (id, name) VALUES (2, 'ROLE_MANAGER');
+INSERT INTO role (id, name) VALUES (3, 'ROLE_CASHIER');
+INSERT INTO role (id, name) VALUES (4, 'ROLE_USER');
+
+WITH inserted_user AS (
+    INSERT INTO users (username, password)
+        VALUES ('ADMIN', '$2a$10$2wrPEA5.c9vktJxlMSCeceCdU3ZLUEF5.T1kefSPlkWtDvKyHPJCa')
+        RETURNING id
+)
+
+INSERT INTO users_roles (user_id, roles_id)
+SELECT id, 1 FROM inserted_user;
